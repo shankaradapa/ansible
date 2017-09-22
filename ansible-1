@@ -1,0 +1,12 @@
+---
+ - hosts: sonar
+   become: yes
+   tasks:
+   - yum: name=httpd state=present
+   - service: name=httpd state=started enabled=yes
+   - name: create a new user called sreenu
+     user: name=sreenu password=sreenu2016
+   - name: create a new file
+     file: dest=/home/ec2-user/2.txt state=touch
+   - name: copy a file
+     copy: src=/home/ec2-user/3.txt dest=/home/ec2-user
